@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Vue Application</title>
+</head>
+
+<body>
+    <div id="content">
+        <nav style="width: 30vw; ">
+            <ul style="display: flex; justify-content: space-around; list-style: none; ">
+                <li v-for="(page, index) in pages" :key="index"><a :href='page.links.url'
+                        @click.prevent="active= index">{{ page.links.text}}</a></li>
+            </ul>
+        </nav>
+        <h1>{{ pages[active].pageTitle}}</h1>
+        <p>{{ pages[active].pageContent}}</p>
+    </div>
+
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    active: 0,
+                    pages: [
+
+                        {
+                            links: { text: "Home", url: "index.html", description: "This is home page" },
+                            pageTitle: "Home Page",
+                            pageContent: "Home page content"
+                        },
+                        {
+                            links: { text: "About", url: "about.html", description: "This is about page" },
+                            pageTitle: "About Page",
+                            pageContent: "About page content"
+                        },
+                        {
+                            links: { text: "Contact", url: "contact.html", description: "This is contact page" },
+                            pageTitle: "Contact Page",
+                            pageContent: "contact page content"
+                        },
+                    ]
+                };
+
+            }
+        }).mount('#content')
+    </script>
+</body>
+
+</html>
